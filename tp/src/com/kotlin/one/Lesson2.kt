@@ -1,122 +1,217 @@
 package com.android.one
 
+import kotlin.math.PI
+
+// ─── LEVEL 1 ────────────────────────────────────────────────────────────────
+
+/**
+ * Returns a greeting for the given name.
+ * If no name is provided, greets "Student" by default.
+ */
 fun greet(name: String = "Student"): String {
-    TODO("Write a function that greets someone by name.")
+    return name
 }
 
+/**
+ * Prints information about a person.
+ * @param name  Person's name (required)
+ * @param age   Person's age (default: 18)
+ * @param city  Person's city (default: "Paris")
+ */
 fun printInfo(name: String, age: Int = 18, city: String = "Paris") {
-    TODO("Print user info, with some default values. In the format: $name is $age years old and lives in $city.")
+    println("$name is $age years old and lives in $city.")
 }
 
+/**
+ * Returns the sum of two integers.
+ */
 fun add(a: Int, b: Int): Int {
-    TODO("Function that adds two numbers and returns the result.")
+    return a + b
 }
 
+/**
+ * Returns true if the given number is even, false otherwise.
+ */
 fun isEven(number: Int): Boolean {
-    TODO("Check if a number is even.")
+    return number % 2 == 0
 }
 
+/**
+ * Computes the area of a circle using the formula: π × r².
+ */
 fun areaOfCircle(radius: Double): Double {
-    TODO(
-        "Compute area of a circle using π * r²."
-    )
+    return PI * radius * radius
 }
 
-// TODO 5: Return a letter grade based on score.
+// ─── LEVEL 2 ────────────────────────────────────────────────────────────────
+
+/**
+ * Returns the letter grade corresponding to a numeric score.
+ * - 90+  → "A"
+ * - 80+  → "B"
+ * - 70+  → "C"
+ * - 60+  → "D"
+ * - < 60 → "F"
+ */
 fun grade(score: Int): String {
-    TODO(
-        "Return a letter grade based on score. \uD83D\uDD27 Use if or when" +
-                "- Score >= 90: 'A'\n" +
-                "- Score >= 80: 'B'\n" +
-                "- Score >= 70: 'C'\n" +
-                "- Score >= 60: 'D'\n" +
-                "- Below 60: 'F'"
-    )
+    return when {
+        score >= 90 -> "A"
+        score >= 80 -> "B"
+        score >= 70 -> "C"
+        score >= 60 -> "D"
+        else        -> "F"
+    }
 }
 
+/**
+ * Returns the largest of three integers.
+ */
 fun maxOfThree(a: Int, b: Int, c: Int): Int {
-    TODO(
-        "Return the maximum of three numbers."
-    )
+    return maxOf(a, b, c)
 }
 
+/**
+ * Converts a Celsius temperature to Fahrenheit.
+ * Formula: (C × 9/5) + 32
+ */
 fun toFahrenheit(celsius: Double): Double {
-    TODO("Convert Celsius to Fahrenheit.")
+    return celsius * 9.0 / 5.0 + 32.0
 }
 
+// ─── LEVEL 3 ────────────────────────────────────────────────────────────────
 
+/**
+ * Applies a percentage discount to a price.
+ * @param price    Original price
+ * @param discount Discount fraction (default: 0.1 = 10%)
+ * @return         Discounted price
+ */
 fun applyDiscount(price: Double, discount: Double = 0.1): Double {
-    TODO(
-        "Apply a discount (default 10%) to a price."
-    )
+    return price * (1.0 - discount)
 }
 
+// ─── LEVEL 4 ────────────────────────────────────────────────────────────────
 
+/**
+ * Capitalizes the first letter of every word in a sentence.
+ */
 fun capitalizeWords(sentence: String): String {
-    TODO(
-        "Capitalize the first letter of each word in a sentence."
-    )
+    return sentence.split(" ").joinToString(" ") { word ->
+        word.replaceFirstChar { it.uppercaseChar() }
+    }
 }
 
+/**
+ * Computes the Body Mass Index (BMI).
+ * Formula: weight (kg) / height² (m²)
+ */
 fun bmi(weight: Double, height: Double): Double {
-    TODO(
-        "Compute BMI using the formula: weight / height²"
-    )
+    return weight / (height * height)
 }
 
+/**
+ * Evaluates password strength.
+ * A strong password must:
+ *  - Be at least 8 characters long
+ *  - Contain at least one uppercase letter
+ *  - Contain at least one lowercase letter
+ *  - Contain at least one digit
+ *
+ * @return true if the password meets all criteria, false otherwise.
+ */
 fun passwordStrength(password: String): Boolean {
-    TODO(
-        "Check password strength:\n" +
-                "- At least 8 characters\n" +
-                "- Contains uppercase letter\n" +
-                "- Contains lowercase letter\n" +
-                "- Contains a number"
-    )
+    if (password.length < 8) return false
+    if (!password.any { it.isUpperCase() }) return false
+    if (!password.any { it.isLowerCase() }) return false
+    if (!password.any { it.isDigit() }) return false
+    return true
 }
 
+/**
+ * Filters a list and returns only even numbers.
+ */
 fun filterEvenNumbers(numbers: List<Int>): List<Int> {
-    TODO(
-        "Return a list of even numbers from the input list."
-    )
+    return numbers.filter { it % 2 == 0 }
 }
 
+// ─── LEVEL 5 ────────────────────────────────────────────────────────────────
 
+/**
+ * Computes n! (n factorial) recursively.
+ * factorial(0) = 1
+ * factorial(n) = n × factorial(n - 1)
+ */
 fun factorial(n: Int): Int {
-    TODO(
-        "Compute the factorial of a number n recursively."
-    )
+    return if (n <= 0) 1 else n * factorial(n - 1)
 }
 
+/**
+ * Returns the nth Fibonacci number using recursion.
+ * fibonacci(0) = 0, fibonacci(1) = 1
+ */
 fun fibonacci(n: Int): Int {
-    TODO(
-        "Return the nth Fibonacci number using recursion."
-    )
+    return when (n) {
+        0    -> 0
+        1    -> 1
+        else -> fibonacci(n - 1) + fibonacci(n - 2)
+    }
 }
 
+// ─── LEVEL 6 ────────────────────────────────────────────────────────────────
 
-// TODO 19: Simple calculator using when expression.
+/**
+ * Simple interactive calculator.
+ * Reads two numbers and an operator (+, -, *, /) from the user
+ * and prints the result.
+ */
 fun miniCalculator() {
-    TODO(
-        "Create a simple calculator that takes two numbers and an operator (+, -, *, /) from the user and prints the result."
-    )
-    /*
-    Example
     println("Enter first number:")
     val a = readln().toDouble()
-     */
+
+    println("Enter second number:")
+    val b = readln().toDouble()
+
+    println("Enter operator (+, -, *, /):")
+    val operator = readln().trim()
+
+    val result: String = when (operator) {
+        "+" -> "${a + b}"
+        "-" -> "${a - b}"
+        "*" -> "${a * b}"
+        "/" -> if (b != 0.0) "${a / b}" else "Error: Division by zero"
+        else -> "Error: Unknown operator '$operator'"
+    }
+
+    println("Result: $a $operator $b = $result")
 }
 
-// TODO 20: Text analyzer.
+// ─── LEVEL 7 ────────────────────────────────────────────────────────────────
+
+/**
+ * Analyzes a text string and returns a map of statistics:
+ *  - "charCount"         → total number of characters (spaces included)
+ *  - "wordCount"         → number of words
+ *  - "longestWord"       → the longest word in the text
+ *  - "averageWordLength" → average word length as a Double
+ */
 fun analyzeText(text: String): Map<String, Any> {
-    TODO(
-        "Analyze the text and return statistics:\n" +
-                "- Character count\n" +
-                "- Word count\n" +
-                "- Longest word\n" +
-                "- Average word length"
+    val words = text.split(" ").filter { it.isNotEmpty() }
+    val charCount = text.length
+    val wordCount = words.size
+    val longestWord = words.maxByOrNull { it.length } ?: ""
+    val averageWordLength = if (words.isEmpty()) 0.0
+                            else words.sumOf { it.length }.toDouble() / words.size
+
+    return mapOf(
+        "charCount"         to charCount,
+        "wordCount"         to wordCount,
+        "longestWord"       to longestWord,
+        "averageWordLength" to averageWordLength
     )
 }
 
+
+// ─── TEST RUNNER ─────────────────────────────────────────────────────────────
 
 fun main() {
     println("🔍 Running Kotlin Functions Playground Tests...\n")
@@ -189,5 +284,3 @@ fun main() {
 
 // Simple helper for double comparison
 private val Double.absoluteValue get() = if (this < 0) -this else this
-
-
